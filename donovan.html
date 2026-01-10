@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivo Morto: PROJETO DORIAN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Mrs+Saint+Delafield&display=swap');
+
+        :root {
+            --paper-bg: #eaddcf;
+            --ink: #1a1a1a;
+            --blood: #8a1c1c;
+            --tape: rgba(255, 255, 255, 0.4);
+            --highlight: #f7e7ce;
+        }
+
+        body {
+            background-color: #111;
+            margin: 0;
+            padding: 40px;
+            font-family: 'Courier Prime', monospace;
+            color: var(--ink);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
+        }
+
+        /* O Papel Principal */
+        .paper-sheet {
+            background-color: var(--paper-bg);
+            width: 100%;
+            max-width: 900px;
+            padding: 60px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            position: relative;
+            background-image: url("https://www.transparenttextures.com/patterns/crinkled-paper.png"); 
+            transform: rotate(-0.5deg);
+        }
+
+        /* Efeito de sujeira e bordas gastas */
+        .paper-sheet::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            box-shadow: inset 0 0 100px rgba(85, 59, 39, 0.2);
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Títulos */
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            border-bottom: 4px double var(--ink);
+            padding-bottom: 10px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-family: 'Special Elite', cursive;
+            color: var(--blood);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            transform: rotate(-1deg);
+        }
+
+        /* Capítulos da História */
+        .chapter {
+            margin-bottom: 50px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-family: 'Special Elite', cursive;
+            background: #222;
+            color: #fff;
+            padding: 5px 15px;
+            display: inline-block;
+            transform: rotate(-1deg);
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        /* Elementos Visuais Dinâmicos */
+        .redacted {
+            background: #111;
+            color: #111;
+            padding: 0 4px;
+            cursor: help;
+            transition: all 0.4s ease;
+        }
+
+        .redacted:hover {
+            background: transparent;
+            color: var(--blood);
+            text-decoration: line-through;
+            font-weight: bold;
+        }
+
+        .handwritten {
+            font-family: 'Mrs Saint Delafield', cursive;
+            color: #000080; /* Azul caneta */
+            font-size: 1.8rem;
+            position: absolute;
+            opacity: 0.8;
+            transform: rotate(-5deg);
+        }
+
+        /* Polaroids / Fotos */
+        .photo-evidence {
+            float: right;
+            width: 200px;
+            padding: 10px 10px 40px 10px;
+            background: #fff;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+            transform: rotate(3deg);
+            margin: 0 0 20px 20px;
+            position: relative;
+            text-align: center;
+        }
+
+        .photo-evidence::before {
+            /* Fita adesiva */
+            content: "";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .photo-inner {
+            background: #222;
+            height: 150px;
+            color: #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            border: 1px dashed #444;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Efeito Glitch na Foto */
+        .photo-inner:hover::after {
+            content: "MENTIROSO";
+            position: absolute;
+            color: var(--blood);
+            font-weight: bold;
+            font-size: 1.5rem;
+            animation: glitch 0.2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .caption {
+            font-family: 'Mrs Saint Delafield', cursive;
+            font-size: 1.5rem;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        /* Manchas */
+        .stain {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.6;
+            z-index: 5;
+            mix-blend-mode: multiply;
+        }
+
+        .coffee-stain {
+            width: 150px;
+            height: 150px;
+            border: 8px solid #a67c52;
+            border-radius: 50%;
+            top: 50px;
+            right: 50px;
+            filter: blur(2px);
+            opacity: 0.2;
+        }
+        
+        .blood-splatter {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, var(--blood) 0%, transparent 70%);
+            bottom: 100px;
+            left: 40px;
+            filter: blur(1px);
+            opacity: 0.4;
+        }
+
+        /* Citação Destacada */
+        blockquote {
+            border-left: 5px solid var(--blood);
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.05);
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer-warning {
+            border: 2px dashed var(--blood);
+            color: var(--blood);
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 50px;
+            text-transform: uppercase;
+            font-family: 'Special Elite', cursive;
+        }
+
+        @media (max-width: 768px) {
+            .paper-sheet { padding: 30px; }
+            .photo-evidence { float: none; width: 100%; margin: 20px 0; transform: rotate(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="paper-sheet">
+    <!-- Decorações de Fundo -->
+    <div class="stain coffee-stain"></div>
+    <div class="stain blood-splatter"></div>
+    <div class="handwritten" style="top: 120px; left: 40px;">Caso arquivado por "falta de provas"</div>
+
+    <header>
+        <h1>Donovan Fiore</h1>
+        <div class="subtitle">Dossiê Investigativo #0492-B // Nível: Mausoléu</div>
+    </header>
+
+    <blockquote>
+        "O pecado não é o ato. O pecado é ser pego. O pecado é ser feio."
+    </blockquote>
+
+    <div class="chapter">
+        <h2>I. O Garoto que queria ser Ouro</h2>
+        <p>
+            Donovan não nasceu no luxo. Ele era a mobília. Filho da criadagem em uma mansão antiga da cidade, ele aprendeu a ser invisível. Ele viu os ricos mentirem na sexta-feira e serem santificados no domingo.
+        </p>
+        <p>
+            Ainda jovem, ele percebeu sua arma: uma <span class="redacted">beleza desconcertante</span>. Financiado por subornos silenciosos para manter os segredos de sua mãe ocultos, ele invadiu a alta sociedade. Ele não queria servir o banquete. Ele queria ser o dono da mesa.
+        </p>
+    </div>
+
+    <div class="chapter">
+        
+        <div class="photo-evidence">
+            <div class="photo-inner">
+                [IMAGEM FALTANTE]<br>Evidência #A1
+            </div>
+            <div class="caption">Elara Vance</div>
+        </div>
+
+        <h2>II. A Musa e o Espelho</h2>
+        <p>
+            Aos 25 anos, a mortalidade começou a assustá-lo. Ele encontrou <b>Elara Vance</b>, uma pintora reclusa capaz de ver almas. Ele a seduziu por vaidade, querendo ser imortalizado.
+        </p>
+        <p>
+            Mas Elara viu a verdade. A pintura final não era um deus dourado. Era um monstro de arrogância e podridão.
+            <i>"Esta é a verdade, Donovan,"</i> disse ela.
+            Em um acesso de fúria, ele destruiu a vida dela. A pintura foi o último presente dela antes do <span class="redacted">suicídio</span>.
+        </p>
+    </div>
+
+    <div class="chapter">
+        <h2>III. O Ritual de Sangue</h2>
+        <p>
+            Na noite da morte de Elara, o quadro chegou. <i>"Fique com sua perfeição."</i>
+            Donovan, em pânico, cortou a mão em uma taça de cristal quebrada. Ele esperou o sangue. Esperou a dor.
+        </p>
+        <p>
+            Nada. Sua pele permaneceu lisa como mármore. Mas no canto da sala, sobre a tela a óleo, a mão da figura pintada começou a <span class="redacted">sangrar profusamente</span>.
+            O pacto estava selado. Ele estava livre para ser um monstro, desde que continuasse lindo.
+        </p>
+    </div>
+
+    <div class="chapter">
+        <div class="handwritten" style="right: 20px; top: 0px; transform: rotate(10deg); font-size: 1.2rem;">Sterling não existe!</div>
+        <h2>IV. A Ascensão & A Mentira</h2>
+        <p>
+            Donovan entrou para o Direito. Ele não precisava dormir; o quadro dormia por ele. Ele fundou a <b>Fiore & Sterling Associates</b>.
+            Sterling? Uma invenção. Um nome fantasma para dar peso à firma.
+        </p>
+        <p>
+            Ele se tornou "O Veredito de Ferro". Visitava cenas de crime brutais em ternos italianos sem sujar a bainha da calça. Em um tribunal, levou um tiro no peito e continuou seu discurso final. A mancha de sangue apareceu apenas no quadro, trancado a quilômetros dali.
+        </p>
+    </div>
+
+    <div class="chapter">
+        <h2>V. O Mausoléu</h2>
+        <p>
+            Hoje, ele vive na cobertura. Um lugar frio, estéril, que ele chama de Mausoléu.
+            Lá dentro, em um cofre biométrico, o quadro vive. Não é mais uma pintura. É uma monstruosidade em decomposição, com feridas abertas, icterícia e olhos cruéis.
+        </p>
+        <p>
+            Donovan Fiore caminha pela cidade investigando o impossível, sorrindo com dentes perfeitos, enquanto sua alma apodrece no escuro.
+        </p>
+    </div>
+
+    <div class="footer-warning">
+        ⚠️ AVISO DE CONTENÇÃO ⚠️<br>
+        A integridade da tela está em ??%.<br>
+        Se exposta à luz da verdade, ?? anos de decadência atingirão o sujeito instantaneamente.
+    </div>
+
+</div>
+
+</body>
+</html>
