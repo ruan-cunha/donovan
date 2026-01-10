@@ -27,7 +27,6 @@
             background-image: url("https://www.transparenttextures.com/patterns/dark-wood.png");
         }
 
-        /* O Papel Principal */
         .paper-sheet {
             background-color: var(--paper-bg);
             width: 100%;
@@ -39,7 +38,6 @@
             transform: rotate(-0.5deg);
         }
 
-        /* Efeito de sujeira e bordas gastas */
         .paper-sheet::before {
             content: "";
             position: absolute;
@@ -49,7 +47,6 @@
             z-index: 10;
         }
 
-        /* Títulos */
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 3rem;
@@ -70,7 +67,6 @@
             transform: rotate(-1deg);
         }
 
-        /* Capítulos da História */
         .chapter {
             margin-bottom: 50px;
             position: relative;
@@ -96,7 +92,6 @@
             text-align: justify;
         }
 
-        /* Elementos Visuais Dinâmicos */
         .redacted {
             background: #111;
             color: #111;
@@ -114,14 +109,13 @@
 
         .handwritten {
             font-family: 'Mrs Saint Delafield', cursive;
-            color: #000080; /* Azul caneta */
+            color: #000080; 
             font-size: 1.8rem;
             position: absolute;
             opacity: 0.8;
             transform: rotate(-5deg);
         }
 
-        /* Polaroids / Fotos */
         .photo-evidence {
             float: right;
             width: 200px;
@@ -135,7 +129,6 @@
         }
 
         .photo-evidence::before {
-            /* Fita adesiva */
             content: "";
             position: absolute;
             top: -15px;
@@ -161,7 +154,6 @@
             position: relative;
         }
 
-        /* Efeito Glitch na Foto */
         .photo-inner:hover::after {
             content: "MENTIROSO";
             position: absolute;
@@ -185,7 +177,6 @@
             color: #333;
         }
 
-        /* Manchas */
         .stain {
             position: absolute;
             pointer-events: none;
@@ -215,7 +206,6 @@
             opacity: 0.4;
         }
 
-        /* Citação Destacada */
         blockquote {
             border-left: 5px solid var(--blood);
             margin: 30px 0;
@@ -226,7 +216,6 @@
             font-size: 1.1rem;
         }
 
-        /* Footer */
         .footer-warning {
             border: 2px dashed var(--blood);
             color: var(--blood);
@@ -247,7 +236,6 @@
 <body>
 
 <div class="paper-sheet">
-    <!-- Decorações de Fundo -->
     <div class="stain coffee-stain"></div>
     <div class="stain blood-splatter"></div>
     <div class="handwritten" style="top: 120px; left: 40px;">Caso arquivado por "falta de provas"</div>
