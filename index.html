@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arquivo Morto: PROJETO DORIAN</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Mrs+Saint+Delafield&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Special+Elite&family=Mrs+Saint+Delafield&family=Montserrat:wght@300;400;700&display=swap');
 
         :root {
             --paper-bg: #eaddcf;
@@ -13,6 +13,8 @@
             --blood: #8a1c1c;
             --tape: rgba(255, 255, 255, 0.4);
             --highlight: #f7e7ce;
+            --obsidian: #0a0a0a;
+            --gold: #c5a059;
         }
 
         body {
@@ -36,6 +38,7 @@
             position: relative;
             background-image: url("https://www.transparenttextures.com/patterns/crinkled-paper.png"); 
             transform: rotate(-0.5deg);
+            z-index: 1;
         }
 
         .paper-sheet::before {
@@ -47,7 +50,7 @@
             z-index: 10;
         }
 
-        h1 {
+        h1.dossier-title {
             font-family: 'Cinzel', serif;
             font-size: 3rem;
             text-align: center;
@@ -74,7 +77,7 @@
             border-left: 2px solid rgba(0,0,0,0.1);
         }
 
-        h2 {
+        .chapter h2 {
             font-family: 'Special Elite', cursive;
             background: #222;
             color: #fff;
@@ -85,138 +88,43 @@
             margin-bottom: 20px;
         }
 
-        p {
-            line-height: 1.6;
-            font-size: 1.05rem;
-            margin-bottom: 15px;
-            text-align: justify;
-        }
+        p { line-height: 1.6; font-size: 1.05rem; margin-bottom: 15px; text-align: justify; }
 
         .redacted {
-            background: #111;
-            color: #111;
-            padding: 0 4px;
-            cursor: help;
-            transition: all 0.4s ease;
+            background: #111; color: #111; padding: 0 4px; cursor: help; transition: all 0.4s ease;
         }
-
         .redacted:hover {
-            background: transparent;
-            color: var(--blood);
-            text-decoration: line-through;
-            font-weight: bold;
+            background: transparent; color: var(--blood); text-decoration: line-through; font-weight: bold;
         }
 
         .handwritten {
-            font-family: 'Mrs Saint Delafield', cursive;
-            color: #000080; 
-            font-size: 1.8rem;
-            position: absolute;
-            opacity: 0.8;
-            transform: rotate(-5deg);
+            font-family: 'Mrs Saint Delafield', cursive; color: #000080; font-size: 1.8rem; position: absolute; opacity: 0.8; transform: rotate(-5deg);
         }
 
         .photo-evidence {
-            float: right;
-            width: 200px;
-            padding: 10px 10px 40px 10px;
-            background: #fff;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.4);
-            transform: rotate(3deg);
-            margin: 0 0 20px 20px;
-            position: relative;
-            text-align: center;
+            float: right; width: 200px; padding: 10px 10px 40px 10px; background: #fff; box-shadow: 2px 2px 10px rgba(0,0,0,0.4); transform: rotate(3deg); margin: 0 0 20px 20px; position: relative; text-align: center;
         }
-
         .photo-evidence::before {
-            content: "";
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(0,0,0,0.1);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            content: ""; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 100px; height: 30px; background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(0,0,0,0.1); box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
-
         .photo-inner {
-            background: #222;
-            height: 150px;
-            color: #555;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            border: 1px dashed #444;
-            overflow: hidden;
-            position: relative;
+            background: #222; height: 150px; color: #555; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; border: 1px dashed #444; overflow: hidden; position: relative;
         }
-
         .photo-inner:hover::after {
-            content: "MENTIROSO";
-            position: absolute;
-            color: var(--blood);
-            font-weight: bold;
-            font-size: 1.5rem;
-            animation: glitch 0.2s infinite;
+            content: "MENTIROSO"; position: absolute; color: var(--blood); font-weight: bold; font-size: 1.5rem; animation: glitch 0.2s infinite;
         }
-
         @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+            0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(2px, -2px); } 100% { transform: translate(0); }
         }
+        .caption { font-family: 'Mrs Saint Delafield', cursive; font-size: 1.5rem; margin-top: 10px; color: #333; }
 
-        .caption {
-            font-family: 'Mrs Saint Delafield', cursive;
-            font-size: 1.5rem;
-            margin-top: 10px;
-            color: #333;
-        }
+        .stain { position: absolute; pointer-events: none; opacity: 0.6; z-index: 5; mix-blend-mode: multiply; }
+        .coffee-stain { width: 150px; height: 150px; border: 8px solid #a67c52; border-radius: 50%; top: 50px; right: 50px; filter: blur(2px); opacity: 0.2; }
+        .blood-splatter { width: 80px; height: 80px; background: radial-gradient(circle, var(--blood) 0%, transparent 70%); bottom: 100px; left: 40px; filter: blur(1px); opacity: 0.4; }
 
-        .stain {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0.6;
-            z-index: 5;
-            mix-blend-mode: multiply;
-        }
+        blockquote { border-left: 5px solid var(--blood); margin: 30px 0; padding: 20px; background: rgba(0,0,0,0.05); font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.1rem; }
 
-        .coffee-stain {
-            width: 150px;
-            height: 150px;
-            border: 8px solid #a67c52;
-            border-radius: 50%;
-            top: 50px;
-            right: 50px;
-            filter: blur(2px);
-            opacity: 0.2;
-        }
-        
-        .blood-splatter {
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, var(--blood) 0%, transparent 70%);
-            bottom: 100px;
-            left: 40px;
-            filter: blur(1px);
-            opacity: 0.4;
-        }
-
-        blockquote {
-            border-left: 5px solid var(--blood);
-            margin: 30px 0;
-            padding: 20px;
-            background: rgba(0,0,0,0.05);
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        .footer-warning {
+        .decrypt-btn {
             border: 2px dashed var(--blood);
             color: var(--blood);
             padding: 20px;
@@ -225,11 +133,108 @@
             margin-top: 50px;
             text-transform: uppercase;
             font-family: 'Special Elite', cursive;
+            background: transparent;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        @media (max-width: 768px) {
-            .paper-sheet { padding: 30px; }
-            .photo-evidence { float: none; width: 100%; margin: 20px 0; transform: rotate(0); }
+        .decrypt-btn:hover {
+            background: var(--blood);
+            color: #fff;
+            border-style: solid;
+            box-shadow: 0 0 15px var(--blood);
+        }
+
+        #true-file {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--obsidian);
+            z-index: 9999;
+            color: #eaeaea;
+            font-family: 'Montserrat', sans-serif;
+            overflow-y: auto;
+            padding: 50px 20px;
+            box-sizing: border-box;
+            display: none; 
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-image: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+        }
+
+        #true-file.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        .true-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 60px;
+            border: 1px solid #333;
+            border-top: 4px solid var(--gold);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+            position: relative;
+        }
+
+        .true-content h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            text-align: center;
+            font-size: 2.5rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .true-content h3 {
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            margin-top: 40px;
+            font-size: 1.4rem;
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
+        }
+
+        .true-content p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #bbb;
+            text-align: left;
+        }
+
+        .true-content strong {
+            color: #fff;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: 1px solid #555;
+            color: #555;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: monospace;
+            transition: all 0.2s;
+        }
+
+        .close-btn:hover {
+            border-color: var(--blood);
+            color: var(--blood);
+        }
+
+        .terminal-header {
+            font-family: monospace;
+            color: #555;
+            font-size: 0.8rem;
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 10px;
         }
     </style>
 </head>
@@ -241,7 +246,7 @@
     <div class="handwritten" style="top: 120px; left: 40px;">Caso arquivado por "falta de provas"</div>
 
     <header>
-        <h1>Donovan Fiore</h1>
+        <h1 class="dossier-title">Donovan Fiore</h1>
         <div class="subtitle">Dossiê Investigativo #0492-B // Nível: Mausoléu</div>
     </header>
 
@@ -251,76 +256,154 @@
 
     <div class="chapter">
         <h2>I. O Garoto que queria ser Ouro</h2>
-        <p>
-            Donovan não nasceu no luxo. Ele era a mobília. Filho da criadagem em uma mansão antiga da cidade, ele aprendeu a ser invisível. Ele viu os ricos mentirem na sexta-feira e serem santificados no domingo.
-        </p>
-        <p>
-            Ainda jovem, ele percebeu sua arma: uma <span class="redacted">beleza desconcertante</span>. Financiado por subornos silenciosos para manter os segredos de sua mãe ocultos, ele invadiu a alta sociedade. Ele não queria servir o banquete. Ele queria ser o dono da mesa.
-        </p>
+        <p>Donovan não nasceu no luxo. Ele era a mobília. Filho da criadagem em uma mansão antiga da cidade, ele aprendeu a ser invisível. Ele viu os ricos mentirem na sexta-feira e serem santificados no domingo.</p>
+        <p>Ainda jovem, ele percebeu sua arma: uma <span class="redacted">beleza desconcertante</span>. Financiado por subornos silenciosos para manter os segredos de sua mãe ocultos, ele invadiu a alta sociedade. Ele não queria servir o banquete. Ele queria ser o dono da mesa.</p>
     </div>
 
     <div class="chapter">
-        
         <div class="photo-evidence">
-            <div class="photo-inner">
-                [IMAGEM FALTANTE]<br>Evidência #A1
-            </div>
+            <div class="photo-inner">[IMAGEM FALTANTE]<br>Evidência #A1</div>
             <div class="caption">Elara Vance</div>
         </div>
-
         <h2>II. A Musa e o Espelho</h2>
-        <p>
-            Aos 25 anos, a mortalidade começou a assustá-lo. Ele encontrou <b>Elara Vance</b>, uma pintora reclusa conhecida por pintar obras que refletia a essência real das pessoas. Ele a seduziu por vaidade, querendo ser imortalizado.
-        </p>
-        <p>
-            Mas Elara viu a verdade. A pintura final não era um deus dourado. Era um monstro de arrogância e podridão.
-            <i>"Esta é a verdade, Donovan,"</i> disse ela.
-            Em um acesso de fúria, ele destruiu a vida dela. A pintura foi o último presente dela antes do <span class="redacted">suicídio</span>.
-        </p>
+        <p>Aos 25 anos, a mortalidade começou a assustá-lo. Ele encontrou <b>Elara Vance</b>, uma pintora reclusa conhecida por pintar obras que refletia a essência real das pessoas. Ele a seduziu por vaidade, querendo ser imortalizado.</p>
+        <p>Mas Elara viu a verdade. A pintura final não era um deus dourado. Era um monstro de arrogância e podridão. <i>"Esta é a verdade, Donovan,"</i> disse ela. Em um acesso de fúria, ele destruiu a vida dela. A pintura foi o último presente dela antes do <span class="redacted">suicídio</span>.</p>
     </div>
 
     <div class="chapter">
         <h2>III. O Ritual de Sangue</h2>
-        <p>
-            Na noite da morte de Elara, o quadro chegou. <i>"Fique com sua perfeição."</i>
-            Donovan, em pânico, cortou a mão em uma taça de cristal quebrada. Ele esperou o sangue. Esperou a dor.
-        </p>
-        <p>
-            Nada. Sua pele permaneceu lisa como mármore. Mas no canto da sala, sobre a tela a óleo, a mão da figura pintada começou a <span class="redacted">sangrar profusamente</span>.
-            O pacto estava selado. Ele estava livre para ser um monstro, desde que continuasse lindo.
-        </p>
+        <p>Na noite da morte de Elara, o quadro chegou. <i>"Fique com sua perfeição."</i> Donovan, em pânico, cortou a mão em uma taça de cristal quebrada. Ele esperou o sangue. Esperou a dor.</p>
+        <p>Nada. Sua pele permaneceu lisa como mármore. Mas no canto da sala, sobre a tela a óleo, a mão da figura pintada começou a <span class="redacted">sangrar profusamente</span>. O pacto estava selado. Ele estava livre para ser um monstro, desde que continuasse lindo.</p>
     </div>
 
     <div class="chapter">
         <div class="handwritten" style="right: 20px; top: 0px; transform: rotate(10deg); font-size: 1.2rem;">Sterling não existe!</div>
         <h2>IV. A Ascensão & A Mentira</h2>
-        <p>
-            Donovan entrou para o Direito. Ele não precisava dormir; o quadro dormia por ele. Ele fundou a <b>Fiore & Sterling Associates</b>.
-            Sterling? Uma invenção. Um nome fantasma para dar peso à firma.
-        </p>
-        <p>
-            Ele se tornou "O Veredito de Ferro". Visitava cenas de crime brutais em ternos italianos sem sujar a bainha da calça. Em um tribunal, levou um tiro no peito e continuou seu discurso final. A mancha de sangue apareceu apenas no quadro, trancado a quilômetros dali.
-        </p>
+        <p>Donovan entrou para o Direito. Ele não precisava dormir; o quadro dormia por ele. Ele fundou a <b>Fiore & Sterling Associates</b>. Sterling? Uma invenção. Um nome fantasma para dar peso à firma.</p>
+        <p>Ele se tornou "O Veredito de Ferro". Visitava cenas de crime brutais em ternos italianos sem sujar a bainha da calça. Em um tribunal, levou um tiro no peito e continuou seu discurso final. A mancha de sangue apareceu apenas no quadro, trancado a quilômetros dali.</p>
     </div>
 
     <div class="chapter">
         <h2>V. O Mausoléu</h2>
-        <p>
-            Hoje, ele vive na cobertura. Um lugar frio, estéril, que ele chama de Mausoléu.
-            Lá dentro, em um cofre biométrico, o quadro vive. Não é mais uma pintura. É uma monstruosidade em decomposição, com feridas abertas, icterícia e olhos cruéis.
-        </p>
-        <p>
-            Donovan Fiore caminha pela cidade investigando o impossível, sorrindo com dentes perfeitos, enquanto sua alma apodrece no escuro.
-        </p>
+        <p>Hoje, ele vive na cobertura. Um lugar frio, estéril, que ele chama de Mausoléu. Lá dentro, em um cofre biométrico, o quadro vive. Não é mais uma pintura. É uma monstruosidade em decomposição, com feridas abertas, icterícia e olhos cruéis.</p>
+        <p>Donovan Fiore caminha pela cidade investigando o impossível, sorrindo com dentes perfeitos, enquanto sua alma apodrece no escuro.</p>
     </div>
 
-    <div class="footer-warning">
-        ⚠️ AVISO DE CONTENÇÃO ⚠️<br>
-        A integridade da tela está em ??%.<br>
-        Se exposta à luz da verdade, ?? anos de decadência atingirão o sujeito instantaneamente.
-    </div>
-
+    <button class="decrypt-btn" onclick="openTrueFile()">
+        ⚠️ AVISO DE CONTENÇÃO: ARQUIVO CORROMPIDO ⚠️<br>
+        <span style="font-size: 0.8rem; font-family: monospace; color: #555;">[ CLIQUE AQUI PARA FORÇAR DESCRIPTOGRAFIA SINO_OVERRIDE ]</span>
+    </button>
 </div>
+
+<div id="true-file">
+    <div class="true-content">
+        <button class="close-btn" onclick="closeTrueFile()">[ X ] FECHAR</button>
+        
+        <div class="terminal-header">
+            LOGIN ACEITO<br>
+            CARREGANDO DADOS CLASSIFICADOS...<br>
+            ACESSO CONCEDIDO.
+        </div>
+
+        <h1>A Verdade Nua: Donovan Fiore</h1>
+
+        <h3>I. O Berço de Ferrugem e o Cheiro de Cloro</h3>
+        <p>A mentira mais bem contada por Donovan Fiore não é proferida nos tribunais; ela é costurada na etiqueta de seus ternos de corte milanês. A aura de realeza europeia e o sotaque lapidado sugerem uma linhagem de séculos de riqueza, mas Donovan é fruto do esgoto social de Nova Ogaporã. Ele é o subproduto violento de duas misérias colidentes: etnicamente Ítalo-Irlandês, ele carregou o pior dos dois mundos antes de decidir destruí-los.</p>
+        <p>Sua mãe, Maeve, era uma imigrante celta de primeira geração, uma arrumadeira de ossos finos que polia o mármore das mansões da elite no Distrito Matriz até as juntas de seus dedos sangrarem e deformarem. Ela cheirava perpetuamente a água sanitária, submissão e medo. Seu pai, Carlo Fiore, era um autodenominado "solucionador de problemas" da máfia local, na prática, um cobrador de dívidas brutal, um cão de guarda de terno barato que mastigava charutos e voltava para casa cheirando a suor frio e ao cobre do sangue de homens que não puderam pagar seus agiotas.</p>
+        <p>Donovan cresceu como um fantasma entre esses dois extremos. Ele odiava a covardia silenciosa da mãe tanto quanto repudiava a brutalidade vulgar do pai. Para ele, Carlo era apenas um animal adestrado buscando ossos para mestres mais ricos. O jovem Donovan não queria ser o cachorro; ele queria ser o dono do canil.</p>
+
+        <h3>II. A Epifania de Sterling</h3>
+        <p>A bússola moral de Donovan não foi corrompida na fase adulta; ela foi estilhaçada em uma noite chuvosa de novembro, quando ele tinha apenas onze anos. Maeve não tinha com quem deixá-lo, então o levou para os fundos da mansão onde trabalhava: a propriedade da família Sterling. Enquanto ocorria um baile de gala no andar de cima, Donovan permanecia em silêncio na cozinha de serviço, um observador nas sombras.</p>
+        <p>Foi quando o patriarca, Arthur Sterling, desceu as escadas de serviço cambaleando, cego de whisky e cocaína. Ele tropeçou em uma jovem copeira que carregava uma bandeja de taças de cristal. O choque foi violento. O cristal estilhaçou, rasgando o rosto e o pescoço da garota de forma irreparável. Ela gritava, afogando-se no próprio sangue no chão de porcelana, enquanto Sterling apenas sacudia os cacos do seu smoking de seda, irritado com a mancha em seu sapato.</p>
+        <p>A polícia de Ogaporã chegou em minutos. Donovan assistiu, escondido atrás da porta da despensa, enquanto o inspetor-chefe, um homem que seu pai temia, tirava o chapéu, pedia desculpas a Arthur Sterling pelo "incômodo" causado pela "falta de jeito da funcionária", e aceitava um envelope grosso de dinheiro para "cobrir as despesas médicas". A copeira foi levada pelos fundos como lixo. Sterling voltou para o baile, onde foi aplaudido ao discursar sobre filantropia.</p>
+        <p>Naquela noite úmida, vendo a mãe limpar o sangue da colega do chão com os joelhos no chão, Donovan teve sua epifania sombria, o pilar fundacional de sua psicopatia: <em>O sistema não está quebrado; ele funciona perfeitamente. A culpa é uma doença exclusiva dos feios e dos pobres. A beleza, a lei e o dinheiro são a verdadeira imunidade divina.</em> Ele decidiu, ali, que a família Sterling pagaria um dia. Não com sangue, porque sangue é sujo. Mas com a obliteração total de seu legado.</p>
+
+        <h3>III. A Genética como Arma Branca</h3>
+        <p>Aos dezessete anos, a biologia de Donovan lhe entregou a arma que seu pai nunca teve. O menino magricela floresceu em um predador estético. Ele havia ganhado na loteria genética: cabelos loiros, densos e lisos, que contrastavam com uma pele pálida e traços faciais de uma simetria matemática e perturbadora. Seus olhos, de um verde glacial afiado, não refletiam luz; eles a absorviam. Ele percebeu que as pessoas, professores, mulheres, policiais, comerciantes, hesitavam antes de falar com ele. A beleza dele era afiada. Intimidante. Ele não precisava pedir; as pessoas ofereciam.</p>
+        <p>Sua ascensão pela Faculdade de Direito da "Ivy League"(pode?) de Ogaporã foi pavimentada com a destruição sistemática de qualquer um que cruzasse seu caminho. Donovan não era apenas o aluno mais brilhante com uma bolsa de estudos integral; ele era um arquiteto de ruínas psicológicas. Ele não estudava apenas a jurisprudência fria dos livros; ele dissecava as falhas, os segredos e os medos humanos.</p>
+
+        <h3>IV. O Caso Silver: O Teste do Sociopata</h3>
+        <p>A lenda de sua crueldade começou a se formar no último ano acadêmico. O único obstáculo entre Donovan e a posição de Orador da Turma, e a subsequente vaga no escritório mais prestigiado da cidade, era um jovem prodígio chamado Julian Silver. Silver era de família rica, genuinamente bom, carismático e noivo de uma herdeira.</p>
+        <p>Donovan poderia simplesmente ter estudado mais, mas isso seria comum. Ele queria testar sua capacidade de destruir um homem sem jamais tocar nele. Durante sete meses, Donovan orquestrou uma campanha de guerra psicológica invisível. Ele forjou e-mails anônimos sutis para a noiva de Silver, plantando sementes de infidelidade. Ele alterou o alarme do colega antes de exames cruciais. Ele sussurrava, com sua incipiente <em>Língua de Prata</em>, falsos elogios aos ouvidos de Silver que, na verdade, alimentavam suas piores inseguranças sobre as expectativas do pai.</p>
+        <p>O colapso de Julian Silver foi espetacular e silencioso. Nas vésperas das provas finais, viciado em anfetaminas para tentar manter o foco e abandonado pela noiva paranóica, Silver surtou no meio da biblioteca. Ele foi internado em uma clínica psiquiátrica de luxo. Donovan não deixou uma única impressão digital na cena do crime mental. Ele fez o discurso de formatura sob aplausos de pé, vestindo seu primeiro terno sob medida, comprado com o dinheiro de apostas ilegais do pai que ele mesmo havia roubado.</p>
+        <p>Ao receber o diploma, Donovan Fiore sorriu. Ele havia provado sua tese infantil. A lei era apenas um teatro de fantoches; o verdadeiro poder era reescrever a realidade na mente do júri, do juiz e da vítima. Mas, enquanto se olhava no espelho do banheiro naquela noite, comemorando sua vitória, ele notou uma microscópica linha de expressão se formando no canto dos olhos. O tempo. O único juiz que ele ainda não sabia como subornar. A paranoia da mortalidade fincou suas garras em sua mente, preparando o terreno perfeito para a chegada de Elara Vance e o despertar da Névoa.</p>
+        
+        <h3>V. O Declínio Invisível e a Vaidade Tóxica</h3>
+        <p>Aos 25 anos, Donovan Fiore era o leão mais jovem e letal da savana jurídica de Nova Ogaporã. Ele já havia destruído a vida de dezenas de réus, blindado corporações corruptas e acumulado uma fortuna que rivalizava com a de homens com o triplo de sua idade. No entanto, o ouro não parava o relógio. Donovan sofria de uma patologia silenciosa: a cronofobia estética. Ele via a velhice não como um processo biológico natural, mas como a maior e mais imperdoável falha de caráter.</p>
+        <p>A obsessão começou com um fio de cabelo branco encontrado na lapela do seu terno. Depois, foi a leve sombra de exaustão sob seus olhos após um julgamento de quarenta e oito horas. Donovan passou a evitar a luz do sol. Ele demitiu três assistentes consecutivos simplesmente porque eles aparentavam estar cansados, e o cansaço alheio o ofendia. Ele precisava ser eterno. A ideia de que sua maior arma, seu rosto simétrico, seu olhar penetrante e sua pele impecável, iria murchar como uma fruta esquecida era uma tortura inaceitável. Ele precisava de um monumento. Precisava ser imortalizado antes que o primeiro sinal de decadência se instalasse.</p>
+
+        <h3>VI. A Musa do Submundo (Elara Vance)</h3>
+        <p>A resposta para a sua histeria narcisista surgiu em um artigo obscuro de uma revista de artes independentes. A matéria falava de <strong>Elara Vance</strong>, uma pintora reclusa do Bairro Novo. Elara não pintava retratos convencionais; a crítica sussurrava que ela possuía uma "visão mediúnica". Ela recusava comissões milionárias da elite, afirmando que só pintava "a verdade da alma, e os ricos raramente têm uma que valha a pena ser vista".</p>
+        <p>Para Donovan, aquilo não foi uma recusa; foi uma declaração de guerra. Ele decidiu que Elara Vance seria sua. Não o corpo dela, mas o talento. Ele queria subjugá-la e forçá-la a capturar a sua divindade.</p>
+        <p>O processo de sedução foi uma obra-prima de sociopatia. Donovan despiu-se de sua armadura corporativa. Ele começou a frequentar os cafés sujos que ela visitava, vestindo golas altas pretas de caxemira, adotando a postura de um intelectual torturado pelo peso do próprio intelecto. Ele forjou encontros "acidentais", debateu filosofia niilista sob a chuva e pagou (através de laranjas) para que a galeria local ameaçasse despejá-la, apenas para aparecer como seu "salvador" anônimo. Em seis meses, ele quebrou as defesas de Elara. Ela se apaixonou não por Donovan, mas pelo fantasma melancólico que ele fingia ser. Ela finalmente concordou em pintá-lo.</p>
+
+        <h3>VII. O Retrato da Podridão</h3>
+        <p>O ateliê de Elara cheirava a terebintina, vinho barato e poeira. Durante quatro semanas ininterruptas, Donovan posou em uma poltrona de veludo vermelho. Ele acreditava estar no controle absoluto. Ele exibia seu melhor ângulo, seu sorriso mais magnético, esperando ver nascer na tela um deus grego moderno, banhado em ouro e perfeição.</p>
+        <p>Mas a Névoa já rondava Nova Ogaporã, e Elara possuía uma sensibilidade quase mística. A cada pincelada, ela não olhava para o rosto de Donovan; ela olhava <em>através</em> dele. O silêncio no ateliê tornou-se pesado, quase sufocante. Ela parou de sorrir para ele. Seus olhos, antes cheios de afeto, encheram-se de horror contido.</p>
+        <p>No vigésimo oitavo dia, a obra estava pronta. O cheiro de tinta a óleo fresca pairava no ar. Donovan levantou-se, serviu-se de uma taça de vinho e caminhou até o cavalete, preparando um elogio ensaiado. Elara puxou o lençol de algodão.</p>
+        <p>O sorriso de Donovan morreu antes de nascer.</p>
+        <p>O que estava na tela não era um deus. Era um açougueiro de almas vestido de seda. A figura pintada tinha a exata anatomia de Donovan, mas a pele exalava um tom doentio de icterícia e ganância. Os olhos verdes não tinham brilho, pareciam buracos negros sugando a luz da sala. O sorriso... o sorriso era largo demais, cruel, repuxado para trás revelando dentes que lembravam presas de um tubarão branco. Era a essência absoluta da vaidade patológica, do cinismo e da ausência de empatia. Era o sociopata nu.</p>
+        <p>— "O que é esse lixo?" a voz de Donovan tremeu, uma mistura de fúria e terror primal.</p>
+        <p>Elara recuou, segurando um pincel sujo como se fosse uma faca. Lágrimas escorriam pelo rosto manchado de tinta dela. <br>
+        — "Eu tentei achar a luz, Donovan. Eu juro que tentei. Mas você é oco. Você é um cofre lindo por fora, guardando apenas cinzas, vermes e espelhos quebrados por dentro. Esta é a sua verdade."</p>
+
+        <h3>VIII. O Veredito de Ferro (A Destruição de Elara)</h3>
+        <p>Se Elara tivesse lhe dado um tapa no rosto, Donovan teria rido. Mas ela atacou sua religião: seu próprio ego. Naquele dia, ele não a tocou. Ele simplesmente ajeitou os punhos da camisa, pegou seu casaco e saiu, trancando a porta do ateliê. </p>
+        <p>A lei é um bisturi nas mãos certas, e Donovan decidiu fatiá-la viva, sem derramar uma gota de sangue físico. Em menos de quarenta e oito horas, a engrenagem de seu ódio foi acionada. Ele processou Elara por quebra de contrato, alegando danos morais astronômicos. Usando a Fiore & Sterling, ele acionou auditores fiscais corruptos para congelar as contas bancárias dela. Ele comprou o prédio inteiro onde ficava o ateliê, apenas para emitir uma ordem de despejo imediata na véspera do inverno rigoroso de Ogaporã. Ele pagou os jornais para publicarem que ela era uma fraude que usava imagens geradas por IA, destruindo qualquer chance de ela vender um quadro novamente.</p>
+        <p>Elara foi reduzida a um espectro faminto e delirante nas ruas frias da cidade. Donovan a assistia quebrar de longe, tomando espresso no conforto de sua cobertura, saboreando cada notificação judicial que chegava provando a ruína dela. Seu ego exigia um sacrifício total.</p>
+        <p>Setenta dias após a conclusão da pintura, Elara Vance subiu no parapeito da Ponte de Ferro do Distrito Industrial. Ela não deixou uma carta de suicídio. Seu último ato em vida foi gastar seus últimos trocados para enviar uma caixa de madeira maciça, por transportadora, para o endereço de Donovan. Depois, ela se jogou nas águas escuras e congelantes do rio.</p>
+
+        <h3>IX. O Ritual de Sangue e o Despertar da Porcelana</h3>
+        <p>Quando a caixa chegou à cobertura, Donovan já sabia da morte dela. Não havia remorso, apenas um alívio cínico. O problema havia sido "arquivado". Ele usou um pé de cabra para abrir a madeira, esperando encontrar seus pertences devolvidos ou lixo. </p>
+        <p>Era a pintura. Intacta. E uma nota rabiscada a carvão: <em>"Fique com a sua perfeição. Ela vai te devorar vivo."</em></p>
+        <p>A visão daquela abominação pintada na sua própria sala fez o controle emocional de Donovan colapsar. Em um surto de violência irracional, ele pegou a garrafa de whisky escocês mais cara do bar e atirou com toda a força contra o quadro. A garrafa errou a tela, despedaçando-se na parede de concreto aparente ao lado.</p>
+        <p>Donovan ofegou. Um pedaço afiado e pesado de vidro havia ricocheteado, atingindo a lateral do seu rosto e rasgando profundamente a palma da sua mão direita, que ele instintivamente levantou para se proteger. Ele sentiu o impacto. </p>
+        <p>Ele fechou os olhos, esperando a dor excruciante. Esperando o sangue quente jorrar sobre a camisa branca de milhares de dólares. Esperando a cicatriz hedionda que arruinaria seu rosto para sempre.</p>
+        <p>Um segundo se passou. Dois segundos.</p>
+        <p>A dor não veio. Donovan abriu os olhos lentamente. Ele olhou para a própria mão. A pele estava intacta. Branca. Brilhante. Ele tocou o próprio rosto; não havia corte. Mas seus dedos... seus dedos pareciam deslizar sobre a superfície de uma estátua. A pele não cedia. Era fria. Era dura como cerâmica de altíssima tensão. </p>
+        <p>Um som rítmico chamou sua atenção. <em>Drip. Drip. Drip.</em></p>
+        <p>Ele se virou para a tela. Um rasgo idêntico ao que o vidro deveria ter causado apareceu na bochecha pintada do monstro no quadro. E da mão direita da figura de óleo, sangue fresco, espesso e hiper-realista jorrava, escorrendo pela lona e pingando no chão de madeira da cobertura.</p>
+        <p>O quarto ficou gelado. A Névoa de Nova Ogaporã havia encontrado o hospedeiro perfeito para o Mythos de Dorian Gray. Donovan Fiore deu um passo para trás, seu coração de repente batendo num ritmo perigosamente lento. Ele não precisava mais temer o tempo. Ele não precisava mais temer a dor. O acordo havia sido selado: enquanto o retrato suportasse a podridão da sua alma e os danos do seu corpo, ele seria a coisa mais bela e intocável do mundo.</p>
+        <p>Ele olhou para a poça de sangue negro no chão, ajeitou a gola da camisa, sorriu e foi agendar uma reunião. Havia um império corporativo a ser construído em cima dos ossos de Elara Vance.</p>
+
+         <h3>X. O Sócio Fantasma e o Veredito de Ferro</h3>
+        <p>Com a imortalidade correndo fria em suas veias de porcelana, Donovan não precisava mais dormir. Enquanto a elite de Nova Ogaporã descansava, ele trabalhava. Em menos de cinco anos, ele ergueu um monólito de intimidação legal: a <strong>Fiore & Sterling Associates</strong>. O detalhe mais doentio dessa fundação é que não existe, e nunca existiu, um parceiro chamado "Sterling". Donovan usou o sobrenome do magnata que o ensinou a odiar a humanidade na infância. Ele transformou o nome de seu trauma em uma piada corporativa, um fantasma na placa de bronze da porta para dar peso aristocrático a uma ditadura de um homem só.</p>
+        <p>Nos tribunais, Donovan tornou-se uma lenda aterrorizante conhecida como "O Veredito de Ferro". Ele não gritava. Ele não gesticulava para o júri. A sua <em>Clarividência Moral</em> lhe permitia olhar para um promotor e ver, flutuando como fumaça negra, o caso extraconjugal que ele escondia. Ele olhava para a testemunha de acusação e farejava o vício em jogos de azar. Usando sua <em>Língua de Prata</em>, ele não argumentava leis; ele sussurrava destruição. Ele se inclinava sobre a mesa da oposição, sorria com dentes que pareciam afiados demais sob a luz fluorescente, e chantageava a alma de seus adversários até eles gaguejarem e retirarem as queixas. Ele nunca perdeu um caso, porque ele não lutava no tribunal; ele vencia no terror psicológico dos corredores.</p>
+
+        <h3>XI. O Batismo de Chumbo (O Recrutamento de Silas)</h3>
+        <p>Um homem não constrói um império sem atrair predadores. Quando Donovan começou a desmantelar os cartéis de lavagem de dinheiro da concorrência, o submundo reagiu. Eles não mandaram advogados; mandaram um "limpador" profissional de elite. Um homem grande, calado, com luvas de couro e um histórico impecável de assassinatos não resolvidos. Seu nome era Silas.</p>
+        <p>A emboscada ocorreu na garagem subterrânea da Torre Obsidian. Silas emergiu das sombras do concreto armado, bloqueando o caminho de Donovan para seu carro. Não houve monólogo. Silas sacou uma pistola calibre .45 com silenciador e disparou duas vezes diretamente no peito do advogado, à queima-roupa. A força cinética atirou Donovan contra o capô do carro.</p>
+        <p>Silas abaixou a arma, preparando-se para confirmar o óbito. Mas o corpo no capô não sangrou. Donovan suspirou, um som de aborrecimento genuíno, e se endireitou lentamente. Ele espanou a fuligem da pólvora do buraco fumegante no seu paletó de lã fria. Sob a camisa rasgada, a pele estava branca, lisa e perfeitamente ilesa. A quilômetros de distância, no cofre, o Retrato acabava de engolir dois projéteis de chumbo, rasgando a tela em um jorro de tinta preta e pus.</p>
+        <p>O assassino recuou, os olhos arregalados, o treinamento militar falhando diante do impossível. Donovan não chamou a segurança. Ele caminhou até Silas, tirou um lenço de seda do bolso e ofereceu ao homem que tentara matá-lo. <br>
+        — <em>"Seu empregador tem uma imaginação muito limitada, meu caro,"</em> Donovan disse, a voz suave como veludo cortante. <em>"E paga muito mal pelo seu talento. Trabalhe para mim. Eu lhe darei o triplo do valor, imunidade diplomática e a garantia de que você nunca mais atirará em nada que não possa matar."</em></p>
+        <p>Silas largou a arma no chão. Desde aquela noite, ele é o Motorista e o Cão de Caça. Ele é a lâmina cega do império, o homem que dissolve os problemas que Donovan não quer sujar as luvas para resolver.</p>
+
+        <h3>XII. A Fraqueza Terminal: O Monstro Narcisista</h3>
+        <p>Apesar de sua pele de porcelana à prova de balas e de sua mente predatória, Donovan Fiore carrega uma falha estrutural catastrófica: seu ego é feito de vidro finíssimo. A essência do Mito de Dorian Gray é a necessidade patológica de ser adorado, invejado e temido. </p>
+        <p>Se Donovan é contrariado; se um juiz ousa cortá-lo no meio de uma frase; se a mídia de Ogaporã noticia os feitos de outro Rift e o esquece nas páginas de trás; ou se ele se depara com algo genuinamente mais belo do que ele... a máscara quebra. Ele entra em uma espiral de <strong>Drama e Histrionismo</strong>. O frio advogado sociopata dá lugar a uma fera caprichosa e instável. Ele é capaz de comprometer contratos milionários, trair o Sindicato ou ordenar que Silas incendeie um quarteirão inteiro apenas para recuperar os holofotes e forçar a cidade a olhar para ele novamente.</p>
+        <p>Donovan Fiore não teme a morte. Ele teme a irrelevância. E é exatamente essa vaidade doentia que, um dia, fará com que ele próprio destranque a porta do cofre e deixe o monstro sair.</p>   
+
+        <blockquote>
+            "Eles me pagam milhões acreditando que eu defendo a liberdade deles. Tolos. Eles me pagam o dízimo para que eu lhes conceda o privilégio temporário de continuar respirando no mesmo teatro que eu." — <em>D. Fiore.</em>
+        </blockquote>
+                
+    </div>
+</div>
+
+<script>
+    function openTrueFile() {
+        const modal = document.getElementById('true-file');
+        modal.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+        window.scrollTo(0, 0); 
+    }
+
+    function closeTrueFile() {
+        const modal = document.getElementById('true-file');
+        modal.classList.remove('visible');
+        document.body.style.overflow = 'auto'; 
+    }
+</script>
 
 </body>
 </html>
